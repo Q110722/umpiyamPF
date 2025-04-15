@@ -4,7 +4,7 @@ from set_stat import set_directory, cal_stat, print_stat
 from calculate_DPM_6th4 import cal_DPM_6th4
 from calculate_DPM_6th4_log import cal_DPM_6th4_log
 from calculate_DPM_6th4_new import cal_DPM_6th4_new
-
+from calculate_DPM_6th4_restraint import cal_DPM_6th4_restraint
 
 # This code reads item-related ASCII files and updates the specification, DPM
 
