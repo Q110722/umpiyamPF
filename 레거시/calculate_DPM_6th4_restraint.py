@@ -2,7 +2,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
-def cal_DPM_6th4_restran(plot_graph, Total_STAT_ARRAY, NET_STAT, ring, VI_level, deal_time_ref, delay):
+def cal_DPM_6th4_restraint(plot_graph, Total_STAT_ARRAY, NET_STAT, ring, VI_level, deal_time_ref, delay):
     
     Buff_Duration = 1.45
     Cardinal_Ratio = 0.65
