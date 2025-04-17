@@ -1,4 +1,14 @@
-DEX = 0             #2
+#VI_level:  0 = Tempest
+#           1 = Unbound
+#           2 = Obsidian
+#           3 = Ultimate
+#           4 = Forsaken
+#           5 = Blast_VI
+#           6 = Discharge_VI
+#           7 = 3rd (Transition, Resonance, Astra)
+#           8 = 4th (Raven, Assault, Materialize)
+
+DEX = 0             #2      
 DEX_percent = 0     #3
 STR = 0             #0
 STR_percent = 0     #1
