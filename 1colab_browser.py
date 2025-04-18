@@ -12,6 +12,7 @@ drive.mount('/content/drive', force_remount=True)
 
 #!git clone https://github.com/Q110722/umpiyamPF.git
 !git clone -b main https://github.com/Q110722/umpiyamPF.git
+#!git clone https://github.com/MaPM-git/MapleDpm.git
 
 !git config --global user.email "mushbisu@gmail.com"
 !git config --global user.name "Q110722"
@@ -79,8 +80,8 @@ with open(py_file, 'w', encoding='utf-8') as f:
 import difflib
 import os
 
-file1 = '/content/umpiyamPF/calculate_log_assault_fix3.py'
-file2 = '/content/umpiyamPF/calculate_log_assault_fix4.py'
+file1 = '/content/MapleDpm/src/main/java/org/mapledpmlab/type/dealcyclesolo/PathFinderDealCycle.java'
+file2 = '/content/MapleDpm/src/main/java/org/mapledpmlab/type/dealcyclesolo/PathFinderContinuousDealCycle.java'
 
 # 파일 읽기
 with open(file1) as f1, open(file2) as f2:
@@ -105,7 +106,7 @@ output_filename = f'{base1}_vs_{unique2}_diff_dark.html'
 style = """
 <style>
     body {
-        background-color: #1e1e1e;
+        background-color: #0a0a0a;
         color: #ffffff;
         font-family: 'Courier New', monospace;
         font-size: 14px;
@@ -114,32 +115,40 @@ style = """
         width: 100%;
         border-collapse: collapse;
     }
-    .diff_header {
-        background-color: #333333;
+     .diff_header {
+        background-color: #000000 !important;
         color: #ffffff;
         font-size: 20px;
+        text-align: center !important; /*헤더번호*/
     }
     .diff_next {
-        background-color: #444444;
+        background-color: #111111;
+        text-align: center;
     }
     .diff_add {
-        background-color: #144212;  /* 진한 초록 */
-        color: black;
+        background-color: #144212 !important;  /* 진초록 */
+        color: #ffffff;
     }
     .diff_chg {
-        background-color: #6b3e1d;  /* 갈색/주황 계열 */
-        color: black;
+        background-color: #6b3e1d !important;  /* 오렌지브라운 */
+        color: #ffffff;
     }
     .diff_sub {
-        background-color: #5b1d1d;  /* 진한 빨강 */
-        color: black;
+        background-color: #5b1d1d !important;  /* 밤색 */
+        color: #ffffff;
     }
     td, th {
         border: 1px solid #666;
-        padding: 4px;
+        padding: 2px;
+        white-space: pre-wrap;      /* 줄바꿈 허용 */
+        overflow-wrap: break-word; /* normal = 오버플로됨 */
+        word-break: normal;     /* break-word = 단어 중간 줄바꿈 */
+        max-width: 500px;           /* 너비조정 */
+        vertical-align: top;
     }
 </style>
 """
+
 diff_html_with_style = style + diff_html
 
 # 저장
