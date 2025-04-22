@@ -143,42 +143,42 @@ def cal_log_assault_fix4(plot_graph, Total_STAT_ARRAY, NET_STAT, ring, VI_level,
     
     # 6차 극딜 빌드
     Condition_ARRAY1 = np.zeros(17)
-    Condition_ARRAY1[7] = 0         # Barrier (80)   
-    Condition_ARRAY1[14] = 80       # Evolve (80)
-    Condition_ARRAY1[0] = 160       # Epic (130)
-    Condition_ARRAY1[1] = 290       # MY2 (130)
-    Condition_ARRAY1[2] = 420       # CRein (30)
-    Condition_ARRAY1[3] = 450       # 엔버 (100) (시퀀스 없을 때 0 -> 시드링 이후)
-    Condition_ARRAY1[4] = 550       # Seed Ring (100)
-    Condition_ARRAY1[5] = 650       # Evolve_tempest (430) (540) 
+    Condition_ARRAY1[7] = 0         # Barrier (80) (60)
+    Condition_ARRAY1[14] = 60       # Evolve (80) (60+90)
+    Condition_ARRAY1[0] = 210       # Epic (130) (90)
+    Condition_ARRAY1[1] = 300       # MY2 (130) (90)
+    Condition_ARRAY1[2] = 390       # CRein (30) (90)
+    Condition_ARRAY1[4] = 480       # Seed Ring (100) (0+60)
+    Condition_ARRAY1[5] = 540       # Evolve_tempest (430) (540) 
+    Condition_ARRAY1[3] = 1080      # 엔버 (100) (0)
     Condition_ARRAY1[16] = 1080     # Forsaken (6730) (6540)
-    Condition_ARRAY1[8] = 7810      # Ultimate (100) (0)
-    Condition_ARRAY1[13] = 7910     # Relic_evolution (350) (300)
-    Condition_ARRAY1[6] = 8260      # Unbound (530) (540)
-    Condition_ARRAY1[9] = 8790      # Bind (730) (720)
-    Condition_ARRAY1[10] = 9520 + 10000
+    Condition_ARRAY1[8] = 7620      # Ultimate (100) (0)
+    Condition_ARRAY1[13] = 7620     # Relic_evolution (350) (300)
+    Condition_ARRAY1[6] = 7920      # Unbound (530) (540)
+    Condition_ARRAY1[9] = 8460      # Bind (690)
+    Condition_ARRAY1[10] = 9150 + 10090
     
-    Condition_ARRAY1[11] = 650      # Boss, Defense
-    Condition_ARRAY1[12] = 650     # Fatal Strike
+    Condition_ARRAY1[11] = 540      # Boss, Defense
+    Condition_ARRAY1[12] = 540     # Fatal Strike
     
     # 5차 극딜 빌드
     Condition_ARRAY2 = np.zeros(17)
-    Condition_ARRAY2[7] = 0         # Barrier (80)   
-    Condition_ARRAY2[14] = 80       # Evolve (80)
-    Condition_ARRAY2[0] = 160       # Epic (130)
-    Condition_ARRAY2[1] = 290       # MY2 (130)
-    Condition_ARRAY2[2] = 420       # CRein (30)
-    Condition_ARRAY2[3] = 450       # 엔버 (100)
-    Condition_ARRAY2[4] = 550       # Seed Ring (100)
-    Condition_ARRAY2[5] = 650       # Evolve_tempest (430)    
-    Condition_ARRAY2[9] = 1080     # Bind (730)
-    Condition_ARRAY2[8] = 1810      # Ultimate (100)
-    Condition_ARRAY2[13] = 1910     # Relic_evolution (350)  
-    Condition_ARRAY2[6] = 2260     # Unbound (530)
-    Condition_ARRAY2[10] = 2790 + 10000
+    Condition_ARRAY2[7] = 0         # Barrier (60)   
+    Condition_ARRAY2[14] = 60       # Evolve (60+90)
+    Condition_ARRAY2[0] = 210       # Epic (90)
+    Condition_ARRAY2[1] = 300       # MY2 (90)
+    Condition_ARRAY2[2] = 390       # CRein (90)
+    Condition_ARRAY2[4] = 480       # Seed Ring (0+60)
+    Condition_ARRAY2[5] = 540       # Evolve_tempest (540)    
+    Condition_ARRAY2[3] = 1080       # 엔버 (0)
+    Condition_ARRAY2[9] = 1080      # Bind (690)
+    Condition_ARRAY2[8] = 1770      # Ultimate (0)
+    Condition_ARRAY2[13] = 2070     # Relic_evolution (300)  
+    Condition_ARRAY2[6] = 2610     # Unbound (540)
+    Condition_ARRAY2[10] = 2610 + 10090
     
-    Condition_ARRAY2[11] = 650     # Boss, Defense
-    Condition_ARRAY2[12] = 650     # Fatal Strike
+    Condition_ARRAY2[11] = 540     # Boss, Defense
+    Condition_ARRAY2[12] = 540     # Fatal Strike
     # Condition_ARRAY[0] = Epic_time
     #                   1= MY2_time
     #                   2= CRein_time
@@ -442,9 +442,15 @@ def cal_log_assault_fix4(plot_graph, Total_STAT_ARRAY, NET_STAT, ring, VI_level,
                 if Condition_ARRAY[4] <= (t-delay)%(12*1000) < Condition_ARRAY[4] + 8*1000:
                     Damage2 += 140
                     Attack_Ratio2 += 10
-                    #test_graph = 10000000000000000000000000
-                
-                 
+                    #test_graph = 10000000000000000000000000    
+
+             if ring == 3:
+                if Condition_ARRAY[1] <= t%(120*1000) <= Condition_ARRAY[1] + (60 + Server_Lag)*1000:
+                    Damage2 += 20
+                    DEX2 = MY2_DEX
+                    if Condition_ARRAY[4] <= t%(120*1000) < Condition_ARRAY[4] + 15*1000:
+                        Attack_Ratio2 += Restraint_level2
+
             # 시드링 사용X, 메용2만 사용 
             if ring == 0:
                 if Condition_ARRAY[1] <= t%(120*1000) <= Condition_ARRAY[1] + (60 + Server_Lag)*1000:
@@ -656,7 +662,7 @@ def cal_log_assault_fix4(plot_graph, Total_STAT_ARRAY, NET_STAT, ring, VI_level,
                         
                     # Cardinal Blast VI
                     if Cardinal_Blast_Delay <= 0 and Active == 1 and VI_level[5] > 0:
-                        Cardinal_Blast = Cardinal_Ratio2*((660+11*VI_level[5])*2.2*Cardinal_Attack)*(100+Damage2+Boss_Damage2+Cardinal_Damage)*(135+Critical_Damage2)*(100-Boss_Guard*(1-VMatrix_Ignore_Guard/100))*((100+Attack_Ratio2)*Real_Attack+Attack_lumi)*(DEX2+STR/4)*FINAL_ATTACK
+                        Cardinal_Blast = Cardinal_Ratio2*((630+8*VI_level[5])*2.2*Cardinal_Attack)*(100+Damage2+Boss_Damage2+Cardinal_Damage)*(135+Critical_Damage2)*(100-Boss_Guard*(1-VMatrix_Ignore_Guard/100))*((100+Attack_Ratio2)*Real_Attack+Attack_lumi)*(DEX2+STR/4)*FINAL_ATTACK
                         Cardinal_Blast_Delay = 460 - iteration_time
                         Cardinal_Blast_times_used += 1
                         Cardinal_Blast_attacks += 6
@@ -696,7 +702,7 @@ def cal_log_assault_fix4(plot_graph, Total_STAT_ARRAY, NET_STAT, ring, VI_level,
                    # Cardinal Discharge VI
                     if Cardinal_Discharge_Delay <= 0 and Active == 1 and Cardinal_between_Delay <= 0 and VI_level[6] > 0:
                         # x2 attack if there exists a boss
-                        Cardinal_Discharge = Cardinal_Ratio2*2*((325+5*VI_level[6])*2.2*Cardinal_Attack)*(100+Damage2+Boss_Damage2+Cardinal_Damage)*(135+Critical_Damage2)*(100-Boss_Guard*(1-VMatrix_Ignore_Guard/100))*((100+Attack_Ratio2)*Real_Attack+Attack_lumi)*(DEX2+STR/4)*FINAL_ATTACK
+                        Cardinal_Discharge = Cardinal_Ratio2*2*((327+3*VI_level[6])*2.2*Cardinal_Attack)*(100+Damage2+Boss_Damage2+Cardinal_Damage)*(135+Critical_Damage2)*(100-Boss_Guard*(1-VMatrix_Ignore_Guard/100))*((100+Attack_Ratio2)*Real_Attack+Attack_lumi)*(DEX2+STR/4)*FINAL_ATTACK
                         Cardinal_Discharge_Delay = 460 - iteration_time
                         Cardinal_Discharge_times_used += 2
                         Cardinal_Discharge_attacks += 12
@@ -740,21 +746,21 @@ def cal_log_assault_fix4(plot_graph, Total_STAT_ARRAY, NET_STAT, ring, VI_level,
                             Ancient_Fury = Cardinal_Ratio2*(650+21*VI_level[4])*15*3*(100+Damage2+Forsaken_Boss+Ancient_Enchant_Boss_Damage)*(135+Critical_Damage2)*(100-Boss_Guard*(1-(Forsaken_ignore+(100-Forsaken_ignore)*Ancient_Enchant_Ignore_Guard/100)/100))*((100+Attack_Ratio2)*Real_Attack+Attack_lumi)*(DEX2+STR/4)*Ancient_Enchant_Final_Damage*FINAL_ATTACK                 
                             
                             if Cool == 0:
-                                Ancient_Fury_Delay = 10000 - iteration_time
+                                Ancient_Fury_Delay = 10000*Cool_R*(1-Cool*0.05) - iteration_time
                             elif Cool == 1:
-                                Ancient_Fury_Delay = 9500 - iteration_time
+                                Ancient_Fury_Delay = 10000*Cool_R*(1-Cool*0.05) - iteration_time
                             elif Cool == 2:
-                                Ancient_Fury_Delay = 9000 - iteration_time
+                                Ancient_Fury_Delay = 10000*Cool_R*(1-Cool*0.05) - iteration_time
                             elif Cool == 3:
-                                Ancient_Fury_Delay = 8550 - iteration_time
+                                Ancient_Fury_Delay = 10000*Cool_R*(1-Cool*0.05) - iteration_time
                             elif Cool == 4:
-                                Ancient_Fury_Delay = 8100 - iteration_time
+                                Ancient_Fury_Delay = 10000*Cool_R*(1-Cool*0.05) - iteration_time
                             elif Cool == 5:
-                               Ancient_Fury_Delay = 7695 - iteration_time     
+                               Ancient_Fury_Delay = 10000*Cool_R*(1-Cool*0.05) - iteration_time     
                             elif Cool == 6:
-                                Ancient_Fury_Delay = 7290 - iteration_time
+                                Ancient_Fury_Delay = 10000*Cool_R*(1-Cool*0.05) - iteration_time
                             elif Cool == 7:
-                                Ancient_Fury_Delay = 6926 - iteration_time
+                                Ancient_Fury_Delay = 10000*Cool_R*(1-Cool*0.05) - iteration_time
                                 
                             Ancient_Fury_times_used += 3
                             Ancient_Fury_attacks += 45
